@@ -1,0 +1,40 @@
+import numpy as np
+zeroes_array = np.zeros((4,4))
+print(zeroes_array)
+
+'''[[0. 0. 0. 0.]
+    [0. 0. 0. 0.]
+    [0. 0. 0. 0.]
+    [0. 0. 0. 0.]]'''
+
+ones_array = np.ones((4,4)) #((column,row))
+print(ones_array)
+'''[[1. 1. 1. 1.]
+    [1. 1. 1. 1.]
+    [1. 1. 1. 1.]
+    [1. 1. 1. 1.]]'''
+
+#full array 
+#syntax : np.full(shape,value)
+
+full_array=np.full((2,2),7)
+print(full_array)
+'''[[7 7]
+    [7 7]] '''
+
+# creating sequence of number in numpy
+# arange()
+# arange(start,stop,step) 
+
+sequence_arr=np.arange(0,10,2)
+print(sequence_arr)
+'''[0 2 4 6 8]'''
+
+#creating identity ,atrics
+#syntax: eye(size)
+
+identity_matrics=np.eye(3)
+print(identity_matrics)
+'''[[1. 0. 0.]
+    [0. 1. 0.]
+    [0. 0. 1.]]'''

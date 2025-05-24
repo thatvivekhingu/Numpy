@@ -7,7 +7,7 @@ print(zeroes_array)
     [0. 0. 0. 0.]
     [0. 0. 0. 0.]]'''
 
-ones_array = np.ones((4,4)) #((column,row))
+ones_array = np.ones((4,4)) #((row,column))
 print(ones_array)
 '''[[1. 1. 1. 1.]
     [1. 1. 1. 1.]

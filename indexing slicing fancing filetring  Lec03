@@ -1,0 +1,25 @@
+import numpy as np
+
+
+#indexing in array
+arr=np.array([10,20,30,40,50])
+print(arr[0]) #10
+print(arr[-1]) #50
+
+
+#slicing in array 
+#syntax: arr[start:stop:step] add index number not the element number
+
+print(arr[1:3])  #[20 30]
+print(arr[:4])   #[10 20 30 40]
+print(arr[::2])  #[10 30 50]
+print(arr[::-1]) #[50 40 30 20 10]
+
+
+#fancy indexing in array -> selecting multiple index at own
+
+print(arr[[0,2,3]]) #[10 30 40] In this method used list then select 
+
+
+#Filtering data 
+print(arr[arr>20]) #[30 40 50]

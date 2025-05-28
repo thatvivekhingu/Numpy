@@ -1,0 +1,17 @@
+import numpy as np
+
+arr=np.array([10,20,30,40,50,60])
+
+#reshape in array of numpy 
+reshape_arr=arr.reshape(2,3) #(row,column)
+print(reshape_arr)
+'''[[10 20 30]
+   [40 50 60]]'''
+
+#multi dimentional array convert in 1d array
+'''.ravel()-> view ( modification not allowed only return the view of main array)
+   .flatten()-> copy ( modification allowed return the copy of main array)'''
+
+arr_2d =np.array([[10,20,30,00],[40,50,60,11]])
+print(arr_2d.ravel()) # ->[10 20 30  0 40 50 60 11]
+print(arr_2d.flatten()) # -> [10 20 30  0 40 50 60 11]

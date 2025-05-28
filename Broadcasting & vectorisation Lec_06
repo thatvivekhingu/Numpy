@@ -1,0 +1,46 @@
+"""                                                                       BROADCASTING                                                            """
+
+import numpy as np
+
+
+#1) broadcasting  -> any type of arithmetic calculation on array without using an for loop
+
+original_prices=np.array([100,300,500])
+discount=10 #scalar single value ( discount 10 percent)
+final_prices=original_prices-(original_prices*discount/100)
+print(final_prices)
+'''[ 90. 270. 450.]'''
+
+second_eg=np.array([10,50,80])
+result=second_eg*10
+print(result)
+"""[100 500 800]"""
+
+ # expanding each row of matrix
+third=np.array([[1,2,3]                 
+               ,[4,5,6]]) # 2x3
+forth=np.array([11,11,11]) # 1x3
+addition=third + forth
+print(addition)
+'''[[12 13 14]
+   [15 16 17]]'''
+
+# incomparetively shape
+'''
+fifth=np.array([[1,1,1],[2,2,2]])
+sixth=np.array([3,3])
+addition_of_array=fifth+sixth
+print(addition_of_array)
+#ValueError: operands could not be broadcast together with shapes (2,3) (2,)
+'''
+
+
+"""                                                   VECTORISATION                                                                               """
+
+#WITHOUT USING FOR LOOP PERFORM SOME TASK IN ARRAY
+
+arr1=np.array([1,1,1])
+arr2=np.array([2,2,2])
+arr3=arr1+ arr2
+print(arr3)
+'''[3 3 3]'''

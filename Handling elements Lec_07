@@ -1,0 +1,33 @@
+import numpy as np
+
+#                                                                   -> HANDLING  A MISSING ELEMENT , IDENTIFY , REPLACE <-
+# NAN = not a number  
+#find a missing number in array, syntax: np.isnan(array)
+# and return ans in boolean form 
+
+arr=np.array([1,2,np.nan,4,np.nan,6])
+result=np.isnan(arr)
+print(result)
+'''[False False  True False  True False] : true means identify missing element '''
+
+
+
+# when you find missing value how to replace 
+# syntax: np.nan_to_num(array,nan=value) default - 0
+
+arr2=np.array([1,2,np.nan,4,np.nan,6])
+result=np.isnan(arr2)
+clean_array=np.nan_to_num(arr2,nan=10)
+print(clean_array)
+'''[ 1.  2. 10.  4. 10.  6.]'''
+
+# find infinity number in array , syntax: np.isinf()
+
+infinity_array=np.array([1,np.inf,2,10,-np.inf])
+print(np.isinf(infinity_array))
+'''[False  True False False  True]'''
+   # replace infinity value posinf : positive infinity , neginf: negative infinity
+
+replace=np.nan_to_num(infinity_array,posinf=100,neginf=-1000)
+print(replace)
+''''''

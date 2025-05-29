@@ -1,1 +1,23 @@
+What is a Random Number?
+Random number does NOT mean a different number every time. Random means something that can not be predicted logically.
 
+-----------------> Generate a random integer from 0 to 100:
+
+from numpy import random
+x = random.randint(100)
+print(x)
+o/p : 98
+
+------------------> Generate a random float from 0 to 1:
+
+from numpy import random
+x = random.rand()
+print(x)
+O/P : 0.170873081228755
+
+------------------> Generate Random Array
+
+Generate a 1-D array containing 5 random integers from 0 to 100:
+x=random.randint(100, size=(5))
+print(x)
+O/P : [58 0 68 80 42]

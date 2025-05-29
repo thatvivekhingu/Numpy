@@ -1,13 +1,178 @@
-# Find the which type of array -> 0d 1d 2d 3d 
-# syntax : array.ndim  -> number of dimention 
-a = np.array(42)
-b = np.array([1, 2, 3, 4, 5])
-c = np.array([[1, 2, 3], [4, 5, 6]])
-d = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
+# The Difference Between Copy and View
+The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array.
 
-print(a.ndim) #0
-print(b.ndim) #1
-print(c.ndim) #2
-print(d.ndim) #3
+The copy owns the data and any changes made to the copy will not affect original array, and any changes made to the original array will not affect the copy.
+
+The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view.
+
+COPY:
+ExampleGet your own Python Server
+Make a copy, change the original array, and display both arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+arr[0] = 42
+
+print(arr)
+print(x)
+output: [42  2  3  4  5]
+        [1 2 3 4 5]
 
 
+VIEW:
+Example
+Make a view, change the original array, and display both arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.view()
+arr[0] = 42
+
+print(arr)
+print(x)
+
+output: [42  2  3  4  5]
+        [42  2  3  4  5]
+
+
+Check if Array Owns its Data :
+Every NumPy array has the attribute base that returns None if the array owns the data.
+Otherwise, the base  attribute refers to the original object.
+
+Print the value of the base attribute to check if an array owns it's data or not:
+
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+y = arr.view()
+print(x.base)
+print(y.base)
+OUTPUT: None
+        [1 2 3 4 5]
+
+
+_____________________
+-> Iterating Arrays:
+______________________
+     Iterating means going through elements one by one.
+     As we deal with multi-dimensional arrays in numpy, we can do this using basic for loop of python.
+
+Iterate on the elements of the following 1-D array:              Iterate on the elements of the following 2-D array:
+
+arr = np.array([1, 2, 3])                                               arr = np.array([[1, 2, 3], [4, 5, 6]])
+for x in arr:                                                           for x in arr:
+  print(x)                                                              print(x)
+output:                                                                 Output:
+1                                                                             [1 2 3 ]
+2                                                                             [4 5 6 ]
+3
+----------------------------------------------------------------------------------------------------------------------------------
+Iterate on each scalar element of the 2-D array:                 Iterate on the elements of the following 3-D array:
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])                           arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+for x in arr:                                                    for x in arr:
+  for y in x:                                                    print(x)
+    print(y)                                                    output: 
+  output                                                            x represents the 2-D array:
+  1                                                                  [[1 2 3]
+  2                                                                 [4 5 6]]
+  3                                                               x represents the 2-D array:
+  4                                                                 [[ 7  8  9]
+  5                                                                   [10 11 12]]
+  6
+----------------------------------------------------------------------------------------------------------------------------------
+Iterate down to the scalars:
+
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+for x in arr:
+  for y in x:
+    for z in y:
+      print(z)
+output:1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+_______________________________
+Iterating Arrays Using nditer():
+_______________________________
+     The function nditer() is a helping function that can be used from very basic to very advanced iterations. It solves some basic issues which we face in iteration,
+lets go through it with examples.
+
+Iterating on Each Scalar Element
+________________________________
+In basic for loops, iterating through each scalar of an array we need to use n for loops which can be difficult to write for arrays with very high dimensionality.
+
+Example
+Iterate through the following 3-D array:
+
+arr = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+for x in np.nditer(arr):
+  print(x)
+Output:
+1
+2
+3
+4
+5
+6
+7
+8
+
+Iterating Array With Different Data Types
+_________________________________________
+We can use op_dtypes argument and pass it the expected datatype to change the datatype of elements while iterating.
+      NumPy does not change the data type of the element in-place (where the element is in array) so it needs some other space to perform this action, 
+that extra space is called buffer, and in order to enable it in nditer() we pass flags=['buffered'].
+
+Iterate through the array as a string:
+arr = np.array([1, 2, 3])
+for x in np.nditer(arr, flags=['buffered'], op_dtypes=['S']):
+  print(x)
+Output:
+b'1'
+b'2'
+b'3'
+
+Enumerated Iteration Using ndenumerate()
+________________________________________
+Enumeration means mentioning sequence number of somethings one by one.
+Sometimes we require corresponding index of the element while iterating, the ndenumerate() method can be used for those usecases.
+
+Example:
+Enumerate on following 1D arrays elements:
+
+arr = np.array([1, 2, 3])
+for idx, x in np.ndenumerate(arr):
+  print(idx, x)
+output:
+(0,) 1
+(1,) 2
+(2,) 3
+
+Enumerate on following 2D array's elements:
+
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+for idx, x in np.ndenumerate(arr):
+  print(idx, x)
+output:
+(0, 0) 1
+(0, 1) 2
+(0, 2) 3
+(0, 3) 4
+(1, 0) 5
+(1, 1) 6
+(1, 2) 7
+(1, 3) 8

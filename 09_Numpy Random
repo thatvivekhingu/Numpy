@@ -7,7 +7,6 @@ from numpy import random
 x = random.randint(100)
 print(x)
 o/p : 98
-
 ------------------> Generate a random float from 0 to 1:
 
 from numpy import random

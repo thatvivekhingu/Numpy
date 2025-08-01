@@ -22,3 +22,45 @@ print(x)
 O/P : [58 0 68 80 42]
 
 Numpy Random concept read in W3 school 
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char data[100], divisor[20], temp[100], crc[20];
+    int dataLen, divisorLen, i, j;
+
+    printf("Enter data bits: ");
+    scanf("%s", data);
+    printf("Enter divisor bits: ");
+    scanf("%s", divisor);
+
+    dataLen = strlen(data);
+    divisorLen = strlen(divisor);
+
+    // Copy data and add zeros
+    strcpy(temp, data);
+    for (i = 0; i < divisorLen - 1; i++) {
+        temp[dataLen + i] = '0';
+    }
+    temp[dataLen + i] = '\0';
+
+    // Perform division
+    for (i = 0; i <= strlen(temp) - divisorLen; i++) {
+        if (temp[i] == '1') {
+            for (j = 0; j < divisorLen; j++) {
+                temp[i + j] = (temp[i + j] == divisor[j]) ? '0' : '1';
+            }
+        }
+    }
+
+    // The remainder is CRC
+    strncpy(crc, temp + dataLen, divisorLen - 1);
+    crc[divisorLen - 1] = '\0';
+
+    printf("CRC bits: %s\n", crc);
+    printf("Transmitted data: %s%s\n", data, crc);
+
+    return 0;
+}
